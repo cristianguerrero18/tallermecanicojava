@@ -1,4 +1,5 @@
 com\example\proyectojavafinal\Entity\Empleado.class
+com\example\proyectojavafinal\DataInitializer.class
 com\example\proyectojavafinal\Repository\ServicioRepository.class
 com\example\proyectojavafinal\Repository\VehiculoRepository.class
 com\example\proyectojavafinal\Repository\UsuarioRepository.class
