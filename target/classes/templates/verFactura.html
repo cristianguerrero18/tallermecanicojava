@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factura de Orden de Servicio</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General body styles */
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container for the invoice */
+    .invoice-container {
+      width: 70%;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f39c12;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .invoice-header h1 {
+      color: #f39c12;
+      font-size: 2rem;
+    }
+
+    .invoice-header .date {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    /* Table styling for the invoice details */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    td {
+      background-color: #f9f9f9;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f1f1f1;
+    }
+
+    /* Button for navigation */
+    .btn-primary {
+      background-color: #f39c12;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #e67e22;
+    }
+
+    /* Footer styles */
+    .invoice-footer {
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 2px solid #ddd;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="invoice-container">
+
+  <!-- Header -->
+  <div class="invoice-header">
+    <div class="company-info">
+      <h1>Factura</h1>
+      <p>Orden de Servicio #<span th:text="${orden.codigo}"></span></p>
+    </div>
+    <div class="date">
+      <p><strong>Fecha:</strong> <span th:text="${orden.fechaCreacion}"></span></p>
+    </div>
+  </div>
+
+  <!-- Invoice details -->
+  <table>
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Cliente</th>
+      <th>Vehículo</th>
+      <th>Servicio</th>
+      <th>Estado</th>
+      <th>Fecha de Creación</th>
+      <th>Fecha de Finalización</th>
+      <th>Precio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td th:text="${orden.codigo}"></td>
+      <td th:text="${orden.usuario.nombre + ' ' + orden.usuario.apellido}"></td>
+      <td th:text="${orden.vehiculo.modelo + ' - ' + orden.vehiculo.placa} ?: 'Sin vehículo'"></td>
+      <td th:text="${orden.servicio.nombre}"></td>
+      <td th:text="${orden.estado}"></td>
+      <td th:text="${orden.fechaCreacion}"></td>
+      <td th:text="${orden.fechaFinalizacion != null ? orden.fechaFinalizacion : 'N/A'}"></td>
+      <td th:text="${precioServicio}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Navigation Button -->
+  <div class="mt-4 text-center">
+    <a href="/ordenes" class="btn-primary">Volver a las órdenes</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="invoice-footer">
+    <p>Gracias por confiar en nosotros.</p>
+    <p>Si tiene alguna duda, por favor contacte con nuestro servicio al cliente.</p>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Órdenes de Servicio Asignadas al Empleado</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General body styles */
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #2f3640;
+      padding-top: 20px;
+      color: white;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      color: #f39c12;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #f39c12;
+      color: #121212;
+      border-radius: 5px;
+    }
+
+    .sidebar a.active {
+      background-color: #f39c12;
+      color: #121212;
+    }
+
+    /* Main content styles */
+    .content {
+      margin-left: 250px;
+      padding: 30px;
+      flex-grow: 1;
+      background-color: #1e1e1e;
+    }
+
+    h2 {
+      color: #f39c12;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Table styling */
+    .table th,
+    .table td {
+      color: white;
+      background-color: #333;
+    }
+
+    .table-dark th {
+      background-color: #2f3640;
+      color: #fff;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: #444;
+    }
+
+    .alert-info {
+      background-color: #2f3640;
+      border: 1px solid #f39c12;
+      color: #fff;
+    }
+
+    /* Button and action styles */
+    .action-btns a {
+      margin-right: 5px;
+    }
+    .icon {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h3 class="text-center text-warning">Empleado</h3>
+  <a href="/empleado/ordenes" class="active">Ver Ordenes</a>
+  <a href="/" class="btn-secondary">
+    <i class="fas fa-arrow-left"></i> Cerrar Sesión
+  </a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+  <h2>Órdenes de Servicio Asignadas al Empleado</h2>
+
+  <!-- Mensaje de error (si existe) -->
+  <div th:if="${mensajeError}" class="alert alert-danger">
+    <p th:text="${mensajeError}"></p>
+  </div>
+
+  <!-- No orders message -->
+  <div th:if="${ordenes.size() == 0}">
+    <div class="alert alert-info">No tienes órdenes asignadas.</div>
+  </div>
+
+  <!-- Tabla de órdenes -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+              <th>Código</th>
+              <th>Cliente</th>
+              <th>Vehículo</th>
+              <th>Servicio</th>
+              <th>Técnico</th>
+              <th>Estado</th>
+              <th>Fecha de Creación</th>
+              <th>Fecha de Finalización</th>
+              <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="orden : ${ordenes}">
+              <tr>
+                <td th:text="${orden.codigo}"></td>
+                <td th:text="${orden.usuario.nombre + ' ' + orden.usuario.apellido}"></td>
+                <td th:text="${orden.vehiculo != null ? orden.vehiculo.modelo + ' - ' + orden.vehiculo.placa : 'Sin vehículo'}"></td>
+                <td th:text="${orden.servicio.nombre}"></td>
+                <td th:text="${orden.empleado != null ? orden.empleado.nombre + ' ' + orden.empleado.apellido : 'Sin asignar'}"></td>
+                <td th:text="${orden.estado}"></td>
+                <td th:text="${orden.fechaCreacion}"></td>
+                <td th:text="${orden.fechaFinalizacion != null ? orden.fechaFinalizacion : 'N/A'}"></td>
+                <td>
+                  <!-- Botón para finalizar orden -->
+                  <form th:action="@{/empleado/ordenes/finalizar/{codigo}(codigo=${orden.codigo})}" method="post">
+                    <button class="btn btn-success btn-sm" th:disabled="${orden.estado == 'Finalizado'}">
+                      Finalizar
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            </th:block>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="/empleado/menu" class="btn btn-success btn-block">
+    <i class="fas fa-plus-circle icon"></i> Volver
+  </a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

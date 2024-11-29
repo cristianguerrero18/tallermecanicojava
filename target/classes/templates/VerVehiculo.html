@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Vehículos</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General body styles */
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #2f3640;
+      padding-top: 20px;
+      color: white;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      color: #f39c12;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #f39c12;
+      color: #121212;
+      border-radius: 5px;
+    }
+
+    .sidebar a.active {
+      background-color: #f39c12;
+      color: #121212;
+    }
+
+    /* Main content styles */
+    .content {
+      margin-left: 250px;
+      padding: 30px;
+      flex-grow: 1;
+      background-color: #1e1e1e;
+    }
+
+    h2 {
+      color: #f39c12;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .card {
+      background-color: #2f3640;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: #f39c12;
+      color: #121212;
+    }
+
+    .card-body {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card-body h5 {
+      color: #f39c12;
+      font-size: 1.5rem;
+    }
+
+    .card-body p {
+      color: #fff;
+      font-size: 1.1rem;
+    }
+
+    .card-body a {
+      background-color: #f39c12;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #121212;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .card-body a:hover {
+      background-color: #d35400;
+      transform: scale(1.1);
+    }
+
+    .table th, .table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .action-btns a {
+      margin-right: 10px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h3 class="text-center text-warning">Menú Cliente</h3>
+  <a href="/verVehiculo" class="active">Gestionar Vehículos</a>
+  <a href="/ordenes">Agregar Órdenes</a>
+  <a href="/" class="btn-secondary">
+    <i class="fas fa-arrow-left"></i> Cerrar Sesión
+  </a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+  <h2>Lista de Vehículos</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-dark">
+        <thead>
+        <tr>
+          <th>Placa</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Año</th>
+          <th>Cliente</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vehiculo : ${listaVehiculos}">
+          <td th:text="${vehiculo.placa}">Placa</td>
+          <td th:text="${vehiculo.marca}">Marca</td>
+          <td th:text="${vehiculo.modelo}">Modelo</td>
+          <td th:text="${vehiculo.anio}">Año</td>
+          <td th:text="${vehiculo.usuario.nombre + ' ' + vehiculo.usuario.apellido}">Cliente</td>
+          <td class="action-btns">
+            <a th:href="@{/vehiculo/eliminar/{placa}(placa=${vehiculo.placa})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este vehiculo?');">
+              <i class="fas fa-trash-alt"></i> Eliminar
+            </a>
+            <a th:href="@{/vehiculo/editar/{placa}(placa=${vehiculo.placa})}" class="btn btn-sm btn-primary">
+              <span class="icon">&#9998;</span> Editar
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <a href="/vehiculos/nuevo" class="btn btn-success btn-block mt-3">
+    <i class="fas fa-plus-circle"></i> Crear Vehículo Nuevo
+  </a>
+  <a href="/cliente/menu" class="btn btn-secondary btn-block mt-3">
+    <i class="fas fa-arrow-left"></i> Volver
+  </a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
