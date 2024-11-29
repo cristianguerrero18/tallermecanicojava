@@ -70,7 +70,7 @@
 
     table th, table td {
       border-color: #444;
-      color: white;  /* Cambiado a blanco para las celdas */
+      color: white;
     }
 
     .btn {
@@ -80,13 +80,13 @@
     }
 
     .btn-primary {
-      background-color: #f39c12;
+      background-color: #f39c12; /* Naranja */
       border: none;
       color: #121212;
     }
 
     .btn-primary:hover {
-      background-color: #d35400;
+      background-color: #d35400; /* Naranja más oscuro */
     }
 
     .btn-danger {
@@ -110,13 +110,13 @@
     }
 
     .btn-secondary {
-      background-color: #7f8c8d;
+      background-color: #7f8c8d; /* Gris */
       border: none;
       color: #fff;
     }
 
     .btn-secondary:hover {
-      background-color: #95a5a6;
+      background-color: #95a5a6; /* Gris más claro */
     }
 
     /* Responsive design */
@@ -168,19 +168,22 @@
       <td th:text="${servicio.precio}"></td>
       <td class="action-btns">
         <a th:href="@{/verServicio/editar/{id}(id=${servicio.codigo})}" class="btn btn-sm btn-primary">
-          <span class="icon">&#9998;</span>Editar
+          <span class="icon">&#9998;</span> Editar
         </a>
         <a th:href="@{/verServicio/eliminar/{id}(id=${servicio.codigo})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este servicio?');">
-          <span class="icon">&#10060;</span>Eliminar
+          <span class="icon">&#10060;</span> Eliminar
         </a>
       </td>
     </tr>
     </tbody>
   </table>
 
-  <a href="verServicio/formServicio" class="btn btn-success btn-block">
+  <!-- Button to Create Service -->
+  <a href="verServicio/formServicio" class="btn btn-primary btn-block">
     <i class="fas fa-plus-circle icon"></i> Crear Servicio
   </a>
+
+  <!-- Button to Go Back -->
   <a href="/admin/menu" class="btn btn-secondary btn-block mt-3">
     <i class="fas fa-arrow-left icon"></i> Volver
   </a>

@@ -134,6 +134,27 @@
         margin-left: 0;
       }
     }
+
+    /* Custom button colors */
+    .btn-orange {
+      background-color: #e67e22;
+      border-color: #e67e22;
+    }
+
+    .btn-orange:hover {
+      background-color: #d35400;
+      border-color: #d35400;
+    }
+
+    .btn-gray {
+      background-color: #7f8c8d;
+      border-color: #7f8c8d;
+    }
+
+    .btn-gray:hover {
+      background-color: #95a5a6;
+      border-color: #95a5a6;
+    }
   </style>
 </head>
 <body>
@@ -186,10 +207,11 @@
     </div>
   </div>
 
-  <a href="/vehiculos/nuevo" class="btn btn-success btn-block mt-3">
+  <!-- Custom Buttons -->
+  <a href="/vehiculos/nuevo" class="btn btn-orange btn-block mt-3">
     <i class="fas fa-plus-circle"></i> Crear Vehículo Nuevo
   </a>
-  <a href="/cliente/menu" class="btn btn-secondary btn-block mt-3">
+  <a href="/cliente/menu" class="btn btn-gray btn-block mt-3">
     <i class="fas fa-arrow-left"></i> Volver
   </a>
 </div>

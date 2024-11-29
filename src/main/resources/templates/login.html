@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,6 +76,21 @@
       box-shadow: 0 0 10px rgba(243, 156, 18, 0.7);
     }
 
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s, background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      transform: scale(1.05);
+    }
+
     /* Error message style */
     .text-danger {
       font-size: 1rem;
@@ -108,6 +123,10 @@
     </div>
     <button type="submit" class="btn btn-primary">Ingresar</button>
   </form>
+
+  <!-- Botón de Volver -->
+  <a href="/home" class="btn btn-secondary btn-block mt-3">Volver</a>
+
   <p class="mt-3 text-danger" th:text="${mensaje}"></p>
 </div>
 
