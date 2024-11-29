@@ -21,7 +21,7 @@ public class RolController {
     public String listarRol(Model model) {
         List<Rol> listaRol = rolRepository.findAll();
         model.addAttribute("listaRol", listaRol);
-        return "verRol";
+        return "VerRol";
     }
 
     @GetMapping("/verRol/formRol")

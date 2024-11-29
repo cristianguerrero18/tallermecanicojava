@@ -28,7 +28,7 @@ public class UsuarioController {
     public String listarUsuario(Model model ){
         List<Usuario> listaUsuario  = usuarioRepository.findAll() ;
         model.addAttribute("listarUsuario" , listaUsuario) ;
-        return "verUsuario" ;
+        return "VerUsuario" ;
     }
 
     @GetMapping("/verUsuario/formUsuario")

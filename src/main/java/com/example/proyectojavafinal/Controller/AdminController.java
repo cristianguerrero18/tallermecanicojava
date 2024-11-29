@@ -2,6 +2,7 @@ package com.example.proyectojavafinal.Controller;
 
 import com.example.proyectojavafinal.Entity.Usuario;
 import com.example.proyectojavafinal.Repository.UsuarioRepository;
+import com.example.proyectojavafinal.Service.UsuarioAutenticadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,19 +15,23 @@ public class AdminController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioAutenticadoService usuarioAutenticadoService;
 
     @GetMapping("/admin/login")
     public String login() {
         return "login";
     }
 
+
     @PostMapping("/admin/validar")
     public String validarUsuario(String correo, String contrasena, Model model) {
         Usuario usuario = usuarioRepository.findByCorreoAndContrasena(correo, contrasena);
         if (usuario != null && usuario.getRol().getDescripcion().equalsIgnoreCase("admin")) {
+            usuarioAutenticadoService.setCorreoAutenticado(correo); // Guardar el correo autenticado
             return "redirect:/admin/menu";
         } else if (usuario != null) {
-            model.addAttribute("mensaje", "Acceso restringido. Solo para administradores.");
+            model.addAttribute("mensaje", "Acceso restringido. Solo para Administradores.");
         } else {
             model.addAttribute("mensaje", "Credenciales incorrectas.");
         }

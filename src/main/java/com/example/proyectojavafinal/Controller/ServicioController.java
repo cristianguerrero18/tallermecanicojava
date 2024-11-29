@@ -23,7 +23,7 @@ public class ServicioController {
     public String listarServicio(Model model) {
         List<Servicio> listaServicio = servicioRepository.findAll();
         model.addAttribute("listaServicio", listaServicio);
-        return "verServicio";
+        return "VerServicio";
     }
 
     @GetMapping("/verServicio/formServicio")

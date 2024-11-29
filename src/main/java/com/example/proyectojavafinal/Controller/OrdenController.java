@@ -42,6 +42,7 @@ public class OrdenController {
     public String mostrarFormulario(Model model) {
         String correoAutenticado = usuarioAutenticadoService.getCorreoAutenticado();
         Usuario cliente = usuarioRepository.findByCorreo(correoAutenticado);
+        Usuario admin =  usuarioRepository.findByCorreo(correoAutenticado);
 
         if (cliente == null) {
             model.addAttribute("mensajeError", "Error: No se encontró el cliente autenticado.");
@@ -89,7 +90,7 @@ public class OrdenController {
         }
 
         model.addAttribute("ordenes", ordenServicioRepository.findByUsuario(cliente));
-        return "verOrden";
+        return "VerOrden";
     }
 
     // Editar orden existente

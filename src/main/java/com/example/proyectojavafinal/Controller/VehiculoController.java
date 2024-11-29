@@ -59,7 +59,7 @@ public class VehiculoController {
     public String verVehiculos(Model model) {
         List<Vehiculo> listaVehiculos = vehiculoRepository.findAll();
         model.addAttribute("listaVehiculos", listaVehiculos);
-        return "verVehiculo";
+        return "VerVehiculo";
     }
     @GetMapping("/vehiculo/eliminar/{placa}")
     public String eliminarVehiculo(@PathVariable("placa") String placa, Model model) {
