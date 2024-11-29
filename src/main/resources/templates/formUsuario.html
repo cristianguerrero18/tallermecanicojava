@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General body styles */
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #2f3640;
+            padding-top: 20px;
+            color: white;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: #f39c12;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #f39c12;
+            color: #121212;
+            border-radius: 5px;
+        }
+
+        .sidebar a.active {
+            background-color: #f39c12;
+            color: #121212;
+        }
+
+        /* Main content styles */
+        .content {
+            margin-left: 250px;
+            padding: 30px;
+            flex-grow: 1;
+            background-color: #1e1e1e;
+        }
+
+        h2 {
+            color: #f39c12;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group label {
+            color: #fff;
+        }
+
+        .form-control {
+            background-color: #2f3640;
+            border: 1px solid #444;
+            color: #fff;
+        }
+
+        .form-control:focus {
+            background-color: #444;
+            color: #fff;
+            border-color: #f39c12;
+        }
+
+        .btn-primary {
+            background-color: #f39c12;
+            border: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #121212;
+        }
+
+        .btn-primary:hover {
+            background-color: #d35400;
+        }
+
+        .btn-secondary {
+            background-color: #7f8c8d;
+            border: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #95a5a6;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h3 class="text-center text-warning">Administrador</h3>
+    <a href="/verUsuario" class="active">Gestionar Usuarios</a>
+    <a href="/verRol">Gestionar Roles</a>
+    <a href="/verServicio">Gestionar Servicios</a>
+    <a href="/admin/ordenes">Gestionar Ordenes</a>
+    <a href="/verEmpleado">Gestionar Empleados</a>
+    <a href="/" class="btn-secondary">
+        <i class="fas fa-arrow-left"></i> Cerrar Sesión
+    </a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <h2 th:text="${usuario.cedula != null ? 'Editar Usuario' : 'Agregar Usuario'}"></h2>
+
+    <form th:action="@{/guardarUsuario}" th:object="${usuario}" method="post">
+
+        <div class="form-group">
+            <label for="cedula">Cédula del Usuario</label>
+            <input type="text" th:field="*{cedula}" class="form-control" placeholder="Cédula del Usuario" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">Nombre del Usuario</label>
+            <input type="text" th:field="*{nombre}" class="form-control" placeholder="Nombre del Usuario" required>
+        </div>
+
+        <div class="form-group">
+            <label for="apellido">Apellido del Usuario</label>
+            <input type="text" th:field="*{apellido}" class="form-control" placeholder="Apellido del Usuario" required>
+        </div>
+
+        <div class="form-group">
+            <label for="celular">Celular del Usuario</label>
+            <input type="text" th:field="*{celular}" class="form-control" placeholder="Teléfono del Usuario" required>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo del Usuario</label>
+            <input type="email" th:field="*{correo}" class="form-control" placeholder="Correo del Usuario" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" th:field="*{contrasena}" class="form-control" placeholder="Contraseña" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rol">Rol</label>
+            <select th:field="*{rol}" class="form-control" required>
+                <option value="" disabled selected>Seleccione un Rol</option>
+                <option th:each="rol : ${listaRol}"
+                        th:value="${rol.codigo}"
+                        th:text="${rol.descripcion}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                <span th:text="${usuario.cedula != null ? 'Actualizar Usuario' : 'Guardar Usuario'}"></span>
+            </button>
+        </div>
+    </form>
+
+    <a href="/verUsuario" class="btn btn-secondary">Volver a la lista de Usuarios</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

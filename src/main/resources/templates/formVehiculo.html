@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Vehiculo</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General body styles */
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #2f3640;
+      padding-top: 20px;
+      color: white;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      color: #f39c12;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #f39c12;
+      color: #121212;
+      border-radius: 5px;
+    }
+
+    .sidebar a.active {
+      background-color: #f39c12;
+      color: #121212;
+    }
+
+    /* Main content styles */
+    .content {
+      margin-left: 250px;
+      padding: 30px;
+      flex-grow: 1;
+      background-color: #1e1e1e;
+    }
+
+    h1 {
+      color: #f39c12;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Form card */
+    .card {
+      background-color: #2f3640;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    /* Form styles */
+    .form-group label {
+      color: #f39c12;
+    }
+
+    .form-control {
+      background-color: #333;
+      border: 1px solid #444;
+      color: #fff;
+    }
+
+    .form-control:focus {
+      border-color: #f39c12;
+      box-shadow: 0 0 5px #f39c12;
+    }
+
+    .form-text {
+      color: #ccc;
+    }
+
+    .btn {
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary {
+      background-color: #f39c12;
+      border-color: #f39c12;
+      color: #121212;
+    }
+
+    .btn-primary:hover {
+      background-color: #d35400;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      transform: scale(1.05);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h3 class="text-center text-warning">Menú Cliente</h3>
+  <a href="/verVehiculo" class="active">Gestionar Vehículos</a>
+  <a href="/ordenes">Agregar Órdenes</a>
+  <a href="/" class="btn-secondary">
+    <i class="fas fa-arrow-left"></i> Cerrar Sesión
+  </a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+  <h1 th:text="${vehiculo.placa == null ? 'Crear Vehiculo' : 'Editar Vehiculo'}"></h1>
+
+  <!-- Form Card -->
+  <div class="card">
+    <div class="card-body">
+      <form th:action="@{/vehiculos/guardar}" th:object="${vehiculo}" method="post">
+        <!-- Campo para la placa -->
+        <div class="form-group">
+          <label for="placa">Placa</label>
+          <input type="text" id="placa" th:field="*{placa}" class="form-control"
+                 th:readonly="${vehiculo.placa != null}" required/>
+          <small class="form-text text-muted">La placa solo puede ser editado al crear un nuevo vehículo.</small>
+        </div>
+
+        <!-- Campo para la marca -->
+        <div class="form-group">
+          <label for="marca">Marca</label>
+          <input type="text" id="marca" th:field="*{marca}" class="form-control" required/>
+        </div>
+
+        <!-- Campo para el modelo -->
+        <div class="form-group">
+          <label for="modelo">Modelo</label>
+          <input type="text" id="modelo" th:field="*{modelo}" class="form-control" required/>
+        </div>
+
+        <!-- Campo para el año -->
+        <div class="form-group">
+          <label for="anio">Año</label>
+          <input type="number" id="anio" th:field="*{anio}" class="form-control" required/>
+        </div>
+
+        <!-- Botón para guardar -->
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save"></i> Guardar
+        </button>
+
+        <!-- Botón para cancelar -->
+        <a href="/verVehiculo" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> Volver
+        </a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

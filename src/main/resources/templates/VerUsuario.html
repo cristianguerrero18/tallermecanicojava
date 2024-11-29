@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!-- Iconos Font Awesome -->
+    <style>
+        /* General body styles */
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #2f3640;
+            padding-top: 20px;
+            color: white;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: #f39c12;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #f39c12;
+            color: #121212;
+            border-radius: 5px;
+        }
+
+        .sidebar a.active {
+            background-color: #f39c12;
+            color: #121212;
+        }
+
+        /* Main content styles */
+        .content {
+            margin-left: 250px;
+            padding: 30px;
+            flex-grow: 1;
+            background-color: #1e1e1e;
+        }
+
+        h1 {
+            color: #f39c12;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #2f3640;
+            border-radius: 10px;
+            color: #2f3640;
+        }
+
+        table th, table td {
+            text-align: center;
+            padding: 12px;
+            color: #fff;
+        }
+
+        table th {
+            background-color: #f39c12;
+            color: #fff;
+        }
+
+        .btn {
+            border-radius: 8px;
+            font-size: 1rem;
+            padding: 10px 20px;
+            color: #121212;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background-color: #d35400;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-success {
+            background-color: #2ecc71;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+
+        .btn-secondary {
+            background-color: #7f8c8d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #95a5a6;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            table th, table td {
+                font-size: 0.9rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h3 class="text-center text-warning">Administrador</h3>
+    <a href="/verUsuario" class="active">Gestionar Usuarios</a>
+    <a href="/verRol">Gestionar Roles</a>
+    <a href="/verServicio">Gestionar Servicios</a>
+    <a href="/admin/ordenes">Gestionar Ordenes</a>
+    <a href="/verEmpleado">Gestionar Empleados</a>
+    <a href="/" class="btn-secondary">
+        <i class="fas fa-arrow-left"></i> Cerrar Sesión
+    </a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <h1>Lista de Usuarios</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Celular</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="usuario : ${listarUsuario}">
+                    <td th:text="${usuario.cedula}"></td>
+                    <td th:text="${usuario.nombre}"></td>
+                    <td th:text="${usuario.apellido}"></td>
+                    <td th:text="${usuario.celular}"></td>
+                    <td th:text="${usuario.correo}"></td>
+                    <td>******</td>
+                    <td th:text="${usuario.rol.descripcion}"></td>
+                    <td class="action-btns">
+                        <a th:href="@{/usuario/editar/{id}(id=${usuario.cedula})}" class="btn btn-warning">
+                            <i class="fas fa-edit icon"></i> Editar
+                        </a>
+                        <a th:href="@{/usuario/eliminar/{id}(id=${usuario.cedula})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
+                            <i class="fas fa-trash-alt icon"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <a href="/verUsuario/formUsuario" class="btn btn-success btn-block">
+                <i class="fas fa-plus-circle icon"></i> Crear Usuario Nuevo
+            </a>
+
+            <a href="/admin/menu" class="btn btn-secondary btn-block mt-3">
+                <i class="fas fa-arrow-left icon"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos al Taller Automotriz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #222;
+            padding: 20px 0;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+        }
+
+        header h1 {
+            color: #f39c12;
+            font-size: 1.5rem;
+            margin-left: 10px;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #f39c12;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #e67e22;
+        }
+
+        /* Full-screen Hero Section */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1571375358443-8f9ef6379e87') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .btn-main {
+            font-size: 1.1rem;
+            background-color: #f39c12;
+            padding: 12px 30px;
+            color: #000;
+            text-transform: uppercase;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+        }
+
+        /* Quiénes Somos Section */
+        #about {
+            padding: 80px 20px;
+            background: #2c3e50;
+            text-align: center;
+        }
+        #about1 {
+            padding: 80px 20px;
+            background: #2c3e50;
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .team-member {
+            margin-top: 30px;
+            display: inline-block;
+            width: 250px;
+            margin-right: 20px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .team-member h3 {
+            color: #f39c12;
+            margin-top: 10px;
+        }
+
+        /* Photos Section */
+        #photos {
+            padding: 60px 20px;
+            background: #1c1c1c;
+            text-align: center;
+        }
+
+        #photos h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .photo-gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cards Section */
+        .card-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 80px 20px;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: #1c1c1c;
+        }
+
+        .card {
+            background-color: #2c3e50;
+            border-radius: 12px;
+            width: 300px;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            font-size: 5rem;
+            color: #f39c12;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .card-icon:hover {
+            color: #e67e22;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-card {
+            font-size: 1rem;
+            color: #f39c12;
+            text-decoration: none;
+            border: 2px solid #f39c12;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-card:hover {
+            background-color: #f39c12;
+            color: #000;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px 20px;
+            background: #111;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #contact p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        #contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        input, textarea {
+            padding: 12px;
+            width: 300px;
+            border: 2px solid #f39c12;
+            border-radius: 25px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            background-color: #f39c12;
+            color: #000;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e67e22;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #2c3e50;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            font-size: 2rem;
+            color: #f39c12;
+        }
+
+        .modal-body {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        /* Footer Section */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #f1c40f;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #e67e22;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            #photos .photo-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header Section -->
+<header>
+    <img src="/image/1111.jpg" alt="Logo Taller Automotriz">
+    <h1>Sistema Automotriz</h1>
+    <nav>
+        <a href="#about">Quiénes Somos</a>
+        <a href="#cards">Servicios</a>
+        <a href="#contact">Contacto</a>
+        <a href="/home">Agendamientos</a>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Bienvenidos al Taller Automotriz</h1>
+        <p>Confía en nosotros para mantener tu vehículo en perfectas condiciones.</p>
+    </div>
+</section>
+
+<!-- Quiénes Somos Section -->
+<section id="about">
+    <h2>¿Quiénes Somos?</h2>
+    <p>En nuestro taller automotriz nos dedicamos a ofrecer los mejores servicios para tu vehículo, con profesionales altamente calificados y tecnología de punta.</p>
+    <div class="team-member">
+        <img src="/image/logo1.png" alt="Miembro del equipo">
+        <h3>Esteban Zafra Hernandez</h3>
+        <p>Estudiante Unidades Tecnologicas</p>
+    </div>
+    <div class="team-member">
+        <img src="/image/miembro1.jpeg" alt="Miembro del equipo">
+        <h3>Cristian Javier Guerrero</h3>
+        <p>Estudiante Unidades Tecnologicas</p>
+    </div>
+</section>
+<section id="about1">
+        <h3>Sistema de Informacion para un servicio automotriz</h3>
+        <p><b>Descripcion:</b> este aplicativo es un sistema para la prestacion de un servicio de mantenimientos automotriz</p>
+        <p><b>Universidad:</b> Unidades Tecnologicas de Santander</p>
+        <p><b>Grupo:</b> Grupo de estudio E191P</p>
+        <p><b>Equipo de trabajo:</b>Roldan Esteban Zafra y Cristian Javier Guerreo</p>
+</section>
+<!-- Usuarios Section -->
+<section id="usuarios" style="padding: 80px 20px; background: #1c1c1c;">
+    <div class="container">
+        <h2 style="text-align: center; color: #f39c12; margin-bottom: 40px;">Usuarios del Sistema</h2>
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px;">
+            <!-- Administrador -->
+            <div class="card" style="background-color: #2c3e50; border-radius: 12px; width: 300px; text-align: center; padding: 20px;">
+                <i class="fas fa-user-shield fa-3x" style="color: #f39c12; margin-bottom: 20px;"></i>
+                <h3 style="color: #fff; margin-bottom: 10px;">Administrador</h3>
+                <p style="color: #fff; margin-bottom: 5px;"><strong>Usuario:</strong> admin@gmail.com</p>
+                <p style="color: #fff;"><strong>Contraseña:</strong> admin@gmail.com</p>
+            </div>
+
+            <!-- Cliente -->
+            <div class="card" style="background-color: #2c3e50; border-radius: 12px; width: 300px; text-align: center; padding: 20px;">
+                <i class="fas fa-user fa-3x" style="color: #f39c12; margin-bottom: 20px;"></i>
+                <h3 style="color: #fff; margin-bottom: 10px;">Cliente</h3>
+                <p style="color: #fff; margin-bottom: 5px;"><strong>Usuario:</strong> cliente@gmail.com</p>
+                <p style="color: #fff;"><strong>Contraseña:</strong> cliente123</p>
+            </div>
+            <div class="card" style="background-color: #2c3e50; border-radius: 12px; width: 300px; text-align: center; padding: 20px;">
+                <i class="fas fa-user fa-3x" style="color: #f39c12; margin-bottom: 20px;"></i>
+                <h3 style="color: #fff; margin-bottom: 10px;">Empleado</h3>
+                <p style="color: #fff; margin-bottom: 5px;"><strong>Usuario:</strong> empleado@gmail.com</p>
+                <p style="color: #fff;"><strong>Contraseña:</strong> empleado123</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Photos Section -->
+<section id="photos">
+    <h2>Galería de Servicios</h2>
+    <div class="photo-gallery">
+        <img src="/image/servicio1.jpeg" alt="Servicio 1">
+        <img src="/image/servicio2.jpeg" alt="Servicio 2">
+        <img src="/image/servicio3.jpg" alt="Servicio 3">
+    </div>
+</section>
+
+<!-- Cards Section -->
+<section id="cards" class="card-section">
+    <div class="card">
+        <div class="card-icon"><i class="fas fa-cogs"></i></div>
+        <div class="card-body">
+            <h3 class="card-title">Mecánica Automotriz</h3>
+            <p class="card-text">Realizamos reparaciones y mantenimientos para todo tipo de vehículos.</p>
+            <a href="#" class="btn-card" onclick="openModal('modal1')">Conocer más</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-icon"><i class="fas fa-car"></i></div>
+        <div class="card-body">
+            <h3 class="card-title">Inspección de Vehículos</h3>
+            <p class="card-text">Inspeccionamos tu vehículo para asegurarnos de que esté en perfecto estado.</p>
+            <a href="#" class="btn-card" onclick="openModal('modal2')">Conocer más</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-icon"><i class="fas fa-tools"></i></div>
+        <div class="card-body">
+            <h3 class="card-title">Cambio de Neumáticos</h3>
+            <p class="card-text">Servicio rápido y eficaz para cambiar los neumáticos de tu vehículo.</p>
+            <a href="#" class="btn-card" onclick="openModal('modal3')">Conocer más</a>
+        </div>
+    </div>
+    <!-- New Service Added -->
+    <div class="card">
+        <div class="card-icon"><i class="fas fa-wrench"></i></div>
+        <div class="card-body">
+            <h3 class="card-title">Alineación y Balanceo</h3>
+            <p class="card-text">Asegura una conducción suave y sin vibraciones con nuestro servicio de alineación y balanceo.</p>
+            <a href="#" class="btn-card" onclick="openModal('modal4')">Conocer más</a>
+        </div>
+    </div>
+</section>
+
+<!-- Modals -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
+        <h2 class="modal-header">Mecánica Automotriz</h2>
+        <div class="modal-body">
+            <p>Detalles completos sobre los servicios de mecánica automotriz que ofrecemos...</p>
+        </div>
+    </div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
+        <h2 class="modal-header">Inspección de Vehículos</h2>
+        <div class="modal-body">
+            <p>Detalles completos sobre los servicios de inspección de vehículos que ofrecemos...</p>
+        </div>
+    </div>
+</div>
+
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+        <h2 class="modal-header">Cambio de Neumáticos</h2>
+        <div class="modal-body">
+            <p>Detalles completos sobre los servicios de cambio de neumáticos que ofrecemos...</p>
+        </div>
+    </div>
+</div>
+
+<div id="modal4" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal4')">&times;</span>
+        <h2 class="modal-header">Alineación y Balanceo</h2>
+        <div class="modal-body">
+            <p>Detalles completos sobre los servicios de alineación y balanceo que ofrecemos...</p>
+        </div>
+    </div>
+</div>
+
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('confirmationModal')">&times;</span>
+        <h2 class="modal-header">¡Solicitud enviada!</h2>
+        <div class="modal-body">
+            <p>Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Contacto</h2>
+    <p>Si tienes preguntas o deseas más información, puedes contactarnos.</p>
+    <form id="contactForm" onsubmit="sendMessage(event)">
+        <input type="text" name="name" placeholder="Tu Nombre" required>
+        <input type="email" name="email" placeholder="Tu Correo" required>
+        <input type="tel" name="phone" placeholder="Tu Teléfono" required>
+        <textarea name="message" placeholder="Tu Mensaje" required></textarea>
+        <input type="submit" value="Enviar Mensaje">
+    </form>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2024 Taller Automotriz. Todos los derechos reservados. <br> <a href="#">Términos y Condiciones</a></p>
+</footer>
+
+<!-- Modal Scripts -->
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+</script>
+<script>
+    // Function to show the confirmation modal
+    function sendMessage(event) {
+        event.preventDefault(); // Prevent the form from being submitted and the page from refreshing
+
+        // Show the confirmation modal
+        openModal('confirmationModal');
+
+        // Optionally, reset the form after sending the message
+        document.getElementById('contactForm').reset();
+    }
+
+    // Function to open the modal
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    // Function to close the modal
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+</script>
+
+</body>
+
+</html>
