@@ -7,7 +7,6 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
-    /* General body styles */
     body {
       background-color: #121212;
       color: #fff;
@@ -16,7 +15,6 @@
       min-height: 100vh;
     }
 
-    /* Sidebar styles */
     .sidebar {
       position: fixed;
       top: 0;
@@ -29,27 +27,35 @@
       box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
     }
 
+    .sidebar h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #f39c12;
+      text-align: center;
+      font-weight: bold;
+    }
+
     .sidebar a {
       display: block;
       padding: 15px;
       color: #f39c12;
       text-decoration: none;
       font-size: 1.2rem;
-      transition: background-color 0.3s;
+      transition: color 0.3s, border-left 0.3s;
     }
 
     .sidebar a:hover {
-      background-color: #f39c12;
-      color: #121212;
-      border-radius: 5px;
+      color: #d35400;
+      border-left: 5px solid #f39c12;
+      padding-left: 10px;
     }
 
     .sidebar a.active {
-      background-color: #f39c12;
-      color: #121212;
+      color: #d35400;
+      border-left: 5px solid #f39c12;
+      padding-left: 10px;
     }
 
-    /* Main content styles */
     .content {
       margin-left: 250px;
       padding: 30px;
@@ -62,21 +68,21 @@
       font-size: 2.5rem;
       margin-bottom: 30px;
       text-align: center;
+      font-weight: bold;
     }
 
     .card {
       background-color: #2f3640;
       border: none;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       margin-bottom: 20px;
-      transition: transform 0.3s, background-color 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      background-color: #f39c12;
-      color: #121212;
+      transform: translateY(-10px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
     .card-body {
@@ -86,12 +92,14 @@
 
     .card-body h5 {
       color: #f39c12;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      font-weight: bold;
     }
 
     .card-body p {
-      color: #fff;
+      color: #bfbfbf;
       font-size: 1.1rem;
+      margin-bottom: 15px;
     }
 
     .card-body a {
@@ -107,16 +115,15 @@
 
     .card-body a:hover {
       background-color: #d35400;
-      transform: scale(1.1);
+      transform: translateY(-3px);
     }
 
     .card-icon {
-      font-size: 50px;
+      font-size: 60px;
       margin-bottom: 20px;
       color: #f39c12;
     }
 
-    /* Responsive design */
     @media (max-width: 768px) {
       .sidebar {
         width: 200px;
@@ -124,6 +131,7 @@
 
       .content {
         margin-left: 0;
+        padding: 15px;
       }
     }
   </style>
@@ -132,7 +140,7 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
-  <h3 class="text-center text-warning">Menú Cliente</h3>
+  <h3>Menú Cliente</h3>
   <a href="/verVehiculo" class="active">Gestionar Vehículos</a>
   <a href="/ordenes">Agregar Órdenes</a>
   <a href="/" class="btn-secondary">
@@ -149,8 +157,8 @@
       <div class="card">
         <div class="card-body">
           <i class="fas fa-car card-icon"></i>
-          <h5 class="card-title">Gestionar Vehículos</h5>
-          <p class="card-text">Accede a gestionar los vehículos registrados en el sistema.</p>
+          <h5>Gestionar Vehículos</h5>
+          <p>Accede a gestionar los vehículos registrados en el sistema.</p>
           <a href="/verVehiculo">Ir al Panel</a>
         </div>
       </div>
@@ -160,22 +168,22 @@
       <div class="card">
         <div class="card-body">
           <i class="fas fa-box-open card-icon"></i>
-          <h5 class="card-title">Agregar Órdenes</h5>
-          <p class="card-text">Accede para agregar nuevas órdenes al sistema.</p>
+          <h5>Agregar Órdenes</h5>
+          <p>Accede para agregar nuevas órdenes al sistema.</p>
           <a href="/ordenes">Ir al Panel</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Cerrar sesión Button -->
+  <!-- Cerrar sesión -->
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
           <i class="fas fa-sign-out-alt card-icon"></i>
-          <h5 class="card-title">Cerrar Sesión</h5>
-          <p class="card-text">Salir del sistema y volver a la página principal.</p>
+          <h5>Cerrar Sesión</h5>
+          <p>Salir del sistema y volver a la página principal.</p>
           <a href="/home" class="btn-secondary">
             <i class="fas fa-arrow-left"></i> Cerrar Sesión
           </a>

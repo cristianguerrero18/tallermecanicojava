@@ -6,16 +6,15 @@
   <title>Lista de Servicios</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    /* General body styles */
     body {
       background-color: #121212;
       color: #fff;
       font-family: 'Arial', sans-serif;
       display: flex;
       min-height: 100vh;
+      margin: 0;
     }
 
-    /* Sidebar styles */
     .sidebar {
       position: fixed;
       top: 0;
@@ -37,18 +36,12 @@
       transition: background-color 0.3s;
     }
 
-    .sidebar a:hover {
+    .sidebar a:hover, .sidebar a.active {
       background-color: #f39c12;
       color: #121212;
       border-radius: 5px;
     }
 
-    .sidebar a.active {
-      background-color: #f39c12;
-      color: #121212;
-    }
-
-    /* Main content styles */
     .content {
       margin-left: 250px;
       padding: 30px;
@@ -63,71 +56,61 @@
       text-align: center;
     }
 
-    table {
-      background-color: #2f3640;
+    .table th {
+      background-color: #f39c12;
+      color: #121212;
+    }
+
+    .table td {
+      background-color: #333;
       color: #fff;
     }
 
-    table th, table td {
-      border-color: #444;
-      color: white;
+    .table-hover tbody tr:hover {
+      background-color: #444;
     }
 
     .btn {
       font-size: 1rem;
-      padding: 8px 15px;
+      padding: 10px 20px;
       border-radius: 8px;
+      display: inline-block;
+      text-align: center;
     }
 
-    .btn-primary {
-      background-color: #f39c12; /* Naranja */
-      border: none;
-      color: #121212;
+    .btn-create {
+      background-color: #f39c12; /* Fondo naranja */
+      color: white; /* Letra blanca */
+      width: 100%; /* Cubrir todo el ancho */
     }
 
-    .btn-primary:hover {
-      background-color: #d35400; /* Naranja más oscuro */
+    .btn-create:hover {
+      background-color: #e67e22; /* Naranja más oscuro al pasar el mouse */
     }
 
-    .btn-danger {
-      background-color: #e74c3c;
-      border: none;
-      color: #fff;
+    .btn-back {
+      background-color: #95a5a6; /* Fondo gris */
+      color: white; /* Letra blanca */
+      width: 100%; /* Cubrir todo el ancho */
     }
 
-    .btn-danger:hover {
-      background-color: #c0392b;
+    .btn-back:hover {
+      background-color: #7f8c8d; /* Gris más oscuro al pasar el mouse */
     }
 
-    .btn-success {
-      background-color: #27ae60;
-      border: none;
-      color: #fff;
+    .card {
+      background-color: transparent;
+      box-shadow: none;
     }
 
-    .btn-success:hover {
-      background-color: #2ecc71;
+    .action-btns a {
+      margin-right: 5px;
     }
 
-    .btn-secondary {
-      background-color: #7f8c8d; /* Gris */
-      border: none;
-      color: #fff;
-    }
-
-    .btn-secondary:hover {
-      background-color: #95a5a6; /* Gris más claro */
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 200px;
-      }
-
-      .content {
-        margin-left: 0;
-      }
+    /* Estilo para colocar los botones uno al lado del otro */
+    .row .col-6 {
+      padding-right: 5px;
+      padding-left: 5px;
     }
   </style>
 </head>
@@ -178,15 +161,18 @@
     </tbody>
   </table>
 
-  <!-- Button to Create Service -->
-  <a href="verServicio/formServicio" class="btn btn-primary btn-block">
-    <i class="fas fa-plus-circle icon"></i> Crear Servicio
-  </a>
-
-  <!-- Button to Go Back -->
-  <a href="/admin/menu" class="btn btn-secondary btn-block mt-3">
-    <i class="fas fa-arrow-left icon"></i> Volver
-  </a>
+  <div class="row mt-3">
+    <div class="col-6">
+      <a href="verServicio/formServicio" class="btn btn-create">
+        <i class="fas fa-plus-circle icon"></i> Crear Servicio
+      </a>
+    </div>
+    <div class="col-6">
+      <a href="/admin/menu" class="btn btn-back">
+        <i class="fas fa-arrow-left icon"></i> Volver
+      </a>
+    </div>
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario Vehiculo</title>
+  <title>Formulario Vehículo</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
   <style>
@@ -64,66 +64,47 @@
       text-align: center;
     }
 
-    /* Form card */
-    .card {
-      background-color: #2f3640;
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      margin-top: 20px;
-    }
-
-    .card-body {
-      padding: 30px;
-    }
-
-    /* Form styles */
     .form-group label {
-      color: #f39c12;
+      color: white;
+      font-weight: bold;
     }
 
     .form-control {
       background-color: #333;
+      color: white;
       border: 1px solid #444;
-      color: #fff;
     }
 
     .form-control:focus {
+      background-color: #444;
       border-color: #f39c12;
-      box-shadow: 0 0 5px #f39c12;
-    }
-
-    .form-text {
-      color: #ccc;
+      color: white;
     }
 
     .btn {
+      font-size: 1rem;
+      padding: 8px 15px;
       border-radius: 8px;
-      padding: 10px 20px;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      transition: background-color 0.3s, transform 0.3s;
     }
 
     .btn-primary {
       background-color: #f39c12;
-      border-color: #f39c12;
+      border: none;
       color: #121212;
     }
 
     .btn-primary:hover {
       background-color: #d35400;
-      transform: scale(1.05);
     }
 
     .btn-secondary {
-      background-color: #6c757d;
-      border-color: #6c757d;
+      background-color: #7f8c8d;
+      border: none;
+      color: #fff;
     }
 
     .btn-secondary:hover {
-      background-color: #5a6268;
-      transform: scale(1.05);
+      background-color: #95a5a6;
     }
 
     /* Responsive design */
@@ -152,50 +133,46 @@
 
 <!-- Main Content -->
 <div class="content">
-  <h1 th:text="${vehiculo.placa == null ? 'Crear Vehiculo' : 'Editar Vehiculo'}"></h1>
+  <h1 th:text="${vehiculo.placa == null ? 'Crear Vehículo' : 'Editar Vehículo'}"></h1>
 
-  <!-- Form Card -->
-  <div class="card">
-    <div class="card-body">
-      <form th:action="@{/vehiculos/guardar}" th:object="${vehiculo}" method="post">
-        <!-- Campo para la placa -->
-        <div class="form-group">
-          <label for="placa">Placa</label>
-          <input type="text" id="placa" th:field="*{placa}" class="form-control"
-                 th:readonly="${vehiculo.placa != null}" required/>
-          <small class="form-text text-muted">La placa solo puede ser editado al crear un nuevo vehículo.</small>
-        </div>
-
-        <!-- Campo para la marca -->
-        <div class="form-group">
-          <label for="marca">Marca</label>
-          <input type="text" id="marca" th:field="*{marca}" class="form-control" required/>
-        </div>
-
-        <!-- Campo para el modelo -->
-        <div class="form-group">
-          <label for="modelo">Modelo</label>
-          <input type="text" id="modelo" th:field="*{modelo}" class="form-control" required/>
-        </div>
-
-        <!-- Campo para el año -->
-        <div class="form-group">
-          <label for="anio">Año</label>
-          <input type="number" id="anio" th:field="*{anio}" class="form-control" required/>
-        </div>
-
-        <!-- Botón para guardar -->
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-save"></i> Guardar
-        </button>
-
-        <!-- Botón para cancelar -->
-        <a href="/verVehiculo" class="btn btn-secondary">
-          <i class="fas fa-arrow-left"></i> Volver
-        </a>
-      </form>
+  <!-- Formulario -->
+  <form th:action="@{/vehiculos/guardar}" th:object="${vehiculo}" method="post">
+    <!-- Campo para la placa -->
+    <div class="form-group">
+      <label for="placa">Placa</label>
+      <input type="text" id="placa" th:field="*{placa}" class="form-control"
+             th:readonly="${vehiculo.placa != null}" required />
+      <small class="form-text text-muted">La placa solo puede ser editada al crear un nuevo vehículo.</small>
     </div>
-  </div>
+
+    <!-- Campo para la marca -->
+    <div class="form-group">
+      <label for="marca">Marca</label>
+      <input type="text" id="marca" th:field="*{marca}" class="form-control" required />
+    </div>
+
+    <!-- Campo para el modelo -->
+    <div class="form-group">
+      <label for="modelo">Modelo</label>
+      <input type="text" id="modelo" th:field="*{modelo}" class="form-control" required />
+    </div>
+
+    <!-- Campo para el año -->
+    <div class="form-group">
+      <label for="anio">Año</label>
+      <input type="number" id="anio" th:field="*{anio}" class="form-control" required />
+    </div>
+
+    <!-- Botón para guardar -->
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-save"></i> Guardar
+    </button>
+
+    <!-- Botón para cancelar -->
+    <a href="/verVehiculo" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i> Volver
+    </a>
+  </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -6,16 +6,15 @@
     <title>Lista de Roles</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* General body styles */
         body {
             background-color: #121212;
             color: #fff;
             font-family: 'Arial', sans-serif;
             display: flex;
             min-height: 100vh;
+            margin: 0;
         }
 
-        /* Sidebar styles */
         .sidebar {
             position: fixed;
             top: 0;
@@ -37,18 +36,12 @@
             transition: background-color 0.3s;
         }
 
-        .sidebar a:hover {
+        .sidebar a:hover, .sidebar a.active {
             background-color: #f39c12;
             color: #121212;
             border-radius: 5px;
         }
 
-        .sidebar a.active {
-            background-color: #f39c12;
-            color: #121212;
-        }
-
-        /* Main content styles */
         .content {
             margin-left: 250px;
             padding: 30px;
@@ -63,80 +56,71 @@
             text-align: center;
         }
 
-        .table {
-            background-color: #2f3640;
-            border: 1px solid #444;
-            color: #fff;
-        }
-
-        .table th, .table td {
-            color: #fff;
-        }
-
         .table th {
-            background-color: #444;
+            background-color: #f39c12;
+            color: #121212;
         }
 
-        .action-btns {
-            display: flex;
-            justify-content: space-around;
+        .table td {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #444;
         }
 
         .btn {
             font-size: 1rem;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
+            display: block;
+            text-align: center;
+            width: 100%; /* Asegura que el botón ocupe todo el ancho de la columna */
         }
 
-        .btn-primary {
-            background-color: #f39c12;
-            border: none;
-            color: #121212;
+        .btn-create {
+            background-color: #f39c12; /* Fondo naranja */
+            color: white; /* Letra blanca */
         }
 
-        .btn-primary:hover {
-            background-color: #d35400;
+        .btn-create:hover {
+            background-color: #e67e22; /* Naranja más oscuro al pasar el mouse */
         }
 
-        .btn-danger {
-            background-color: #e74c3c;
-            border: none;
-            color: #fff;
+        .btn-back {
+            background-color: #95a5a6; /* Fondo gris */
+            color: white; /* Letra blanca */
         }
 
-        .btn-danger:hover {
-            background-color: #c0392b;
+        .btn-back:hover {
+            background-color: #7f8c8d; /* Gris más oscuro al pasar el mouse */
         }
 
-        .btn-success {
-            background-color: #f39c12; /* Naranja */
-            border: none;
-            color: #fff;
+        .card {
+            background-color: transparent;
+            box-shadow: none;
         }
 
-        .btn-success:hover {
-            background-color: #d35400; /* Naranja más oscuro */
+        .action-btns a {
+            margin-right: 5px;
         }
 
-        .btn-secondary {
-            background-color: #7f8c8d;
-            border: none;
-            color: #fff;
+        /* Estilo para los botones uno al lado del otro y cubriendo el ancho completo */
+        .row {
+            display: flex;
+            justify-content: space-between;
         }
 
-        .btn-secondary:hover {
-            background-color: #95a5a6;
+        .row .col-6 {
+            padding-left: 5px;
+            padding-right: 5px;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-            }
-
-            .content {
-                margin-left: 0;
-            }
+        /* Para los botones de editar y eliminar uno al lado del otro */
+        .d-flex .btn {
+            width: auto; /* Hace que los botones no ocupen todo el ancho */
+            margin-right: 10px; /* Espacio entre los botones */
         }
     </style>
 </head>
@@ -172,23 +156,33 @@
             <td th:text="${rol.codigo}"></td>
             <td th:text="${rol.descripcion}"></td>
             <td class="action-btns">
-                <a th:href="@{/verRol/editar/{id}(id=${rol.codigo})}" class="btn btn-sm btn-primary">
-                    <span class="icon">&#9998;</span> Editar
-                </a>
-                <a th:href="@{/verRol/eliminar/{id}(id=${rol.codigo})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este Rol?');">
-                    <span class="icon">&#10060;</span> Eliminar
-                </a>
+                <!-- Botones Editar y Eliminar juntos en una fila flex -->
+                <div class="d-flex">
+                    <a th:href="@{/verRol/editar/{id}(id=${rol.codigo})}" class="btn btn-sm btn-primary">
+                        <span class="icon">&#9998;</span> Editar
+                    </a>
+                    <a th:href="@{/verRol/eliminar/{id}(id=${rol.codigo})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este Rol?');">
+                        <span class="icon">&#10060;</span> Eliminar
+                    </a>
+                </div>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <a href="verRol/formRol" class="btn btn-success btn-block">
-        <i class="fas fa-plus-circle icon"></i> Crear Rol Nuevo
-    </a>
-    <a href="/admin/menu" class="btn btn-secondary btn-block mt-3">
-        <i class="fas fa-arrow-left icon"></i> Volver
-    </a>
+    <!-- Botones de acción alineados uno al lado del otro y cubriendo el ancho completo -->
+    <div class="row">
+        <div class="col-6">
+            <a href="verRol/formRol" class="btn btn-create">
+                <i class="fas fa-plus-circle icon"></i> Crear Rol Nuevo
+            </a>
+        </div>
+        <div class="col-6">
+            <a href="/admin/menu" class="btn btn-back">
+                <i class="fas fa-arrow-left icon"></i> Volver
+            </a>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

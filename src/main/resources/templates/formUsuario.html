@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
         /* General body styles */
         body {
@@ -64,27 +65,30 @@
         }
 
         .form-group label {
-            color: #fff;
+            color: white;
         }
 
         .form-control {
-            background-color: #2f3640;
+            background-color: #333;
+            color: white;
             border: 1px solid #444;
-            color: #fff;
         }
 
         .form-control:focus {
             background-color: #444;
-            color: #fff;
             border-color: #f39c12;
+            color: white;
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 8px;
         }
 
         .btn-primary {
             background-color: #f39c12;
             border: none;
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            border-radius: 8px;
             color: #121212;
         }
 
@@ -95,9 +99,6 @@
         .btn-secondary {
             background-color: #7f8c8d;
             border: none;
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            border-radius: 8px;
             color: #fff;
         }
 
@@ -181,12 +182,15 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
                 <span th:text="${usuario.cedula != null ? 'Actualizar Usuario' : 'Guardar Usuario'}"></span>
             </button>
         </div>
     </form>
 
-    <a href="/verUsuario" class="btn btn-secondary">Volver a la lista de Usuarios</a>
+    <a href="/verUsuario" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

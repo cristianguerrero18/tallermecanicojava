@@ -14,6 +14,7 @@
       font-family: 'Arial', sans-serif;
       display: flex;
       min-height: 100vh;
+      flex-direction: column;
     }
 
     /* Sidebar styles */
@@ -55,98 +56,95 @@
       padding: 30px;
       flex-grow: 1;
       background-color: #1e1e1e;
+      display: flex;
+      flex-direction: column;
     }
 
-    h1 {
+    h2 {
       color: #f39c12;
       font-size: 2.5rem;
       margin-bottom: 30px;
       text-align: center;
     }
 
-    /* Table styles */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 10px;
-      border: 1px solid #444;
-    }
-
-    th {
-      background-color: #2f3640;
-      color: #f39c12;
-    }
-
-    td {
-      background-color: #333;
-      color: #fff;
-    }
-
-    tr:nth-child(even) {
-      background-color: #444;
-    }
-
-    /* Action buttons */
-    .btn {
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .btn-primary {
-      background-color: #f39c12;
-      border-color: #f39c12;
+    /* Table styling */
+    .table th {
+      background-color: #f39c12; /* Naranja */
       color: #121212;
     }
 
-    .btn-primary:hover {
-      background-color: #d35400;
-      transform: scale(1.05);
+    .table td {
+      background-color: transparent; /* Sin color de fondo */
+      color: white;
     }
 
-    .btn-danger {
-      background-color: #e74c3c;
-      border-color: #e74c3c;
+    .table-hover tbody tr:hover {
+      background-color: #444;
+    }
+
+    .alert-info {
+      background-color: #2f3640;
+      border: 1px solid #f39c12;
       color: #fff;
     }
 
-    .btn-danger:hover {
-      background-color: #c0392b;
-      transform: scale(1.05);
+    /* Button and action styles */
+    .btn-warning {
+      background-color: #f39c12; /* Naranja */
+      border-color: #f39c12;
+      color: #121212;
+      transition: background-color 0.3s, transform 0.3s;
+      margin-bottom: 10px;
     }
 
-    .btn-info {
-      background-color: #3498db;
-      border-color: #3498db;
+    .btn-warning:hover {
+      background-color: #e67e22; /* Naranja más oscuro */
+      transform: scale(1.05);
+      color: #121212;
+    }
+
+    /* Custom "Volver" button */
+    .btn-back {
+      background-color: #6c757d; /* Gris */
+      border-color: #6c757d;
       color: #fff;
+      padding: 10px 20px;
+      font-size: 1rem;
+      width: auto;
+      border-radius: 5px;
+      display: inline-block;
+      text-align: center;
+      transition: background-color 0.3s, transform 0.3s;
+      margin-bottom: 10px;
     }
 
-    .btn-info:hover {
-      background-color: #2980b9;
+    .btn-back:hover {
+      background-color: #5a6268; /* Gris oscuro */
       transform: scale(1.05);
     }
 
-    /* Create and Back buttons */
+    /* Card styling to remove white background */
+    .card {
+      background-color: #1e1e1e; /* Same as main content */
+      border: none;
+    }
+
+    .card-body {
+      background-color: #1e1e1e;
+    }
+
+    /* Ensure buttons are aligned and responsive */
     .btn-block {
-      margin-top: 20px;
-      width: 100%;
+      width: 100%; /* Ensure the buttons take full width */
     }
 
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 200px;
-      }
+    .d-flex {
+      justify-content: space-between; /* Adds space between buttons */
+      flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+    }
 
-      .content {
-        margin-left: 0;
-      }
+    .d-flex .btn {
+      margin: 5px 0; /* Adds spacing between buttons */
     }
   </style>
 </head>
@@ -164,10 +162,10 @@
 
 <!-- Main Content -->
 <div class="content">
-  <h1>Lista de Órdenes de Servicio</h1>
+  <h2>Lista de Órdenes de Servicio</h2>
 
   <!-- Table -->
-  <table>
+  <table class="table table-bordered table-hover">
     <thead>
     <tr>
       <th>Código</th>
@@ -209,13 +207,15 @@
   </table>
 
   <!-- Action Buttons -->
-  <a href="/ordenes/nueva" class="btn btn-success btn-block">
-    <i class="fas fa-plus-circle icon"></i> Crear Orden Nueva
-  </a>
-  <a href="/cliente/menu" class="btn btn-secondary btn-block">
-    <i class="fas fa-arrow-left"></i> Volver
-  </a>
-  <a href="/admin/menu" class="btn btn-secondary btn-block">
+  <div class="d-flex">
+    <a href="/ordenes/nueva" class="btn btn-warning btn-block">
+      <i class="fas fa-cogs"></i> Crear Orden Nueva
+    </a>
+    <a href="/cliente/menu" class="btn btn-secondary btn-block">
+      <i class="fas fa-arrow-left"></i> Volver
+    </a>
+  </div>
+  <a href="/admin/menu" class="btn btn-secondary btn-block mt-2">
     <i class="fas fa-arrow-left"></i> VolverAdmin
   </a>
 </div>

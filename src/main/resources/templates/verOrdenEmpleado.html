@@ -64,15 +64,14 @@
     }
 
     /* Table styling */
-    .table th,
-    .table td {
-      color: white;
-      background-color: #333;
+    .table th {
+      background-color: #f39c12; /* Naranja */
+      color: #121212;
     }
 
-    .table-dark th {
-      background-color: #2f3640;
-      color: #fff;
+    .table td {
+      background-color: transparent; /* Sin color de fondo */
+      color: white;
     }
 
     .table-hover tbody tr:hover {
@@ -86,11 +85,17 @@
     }
 
     /* Button and action styles */
-    .action-btns a {
-      margin-right: 5px;
+    .btn-warning {
+      background-color: #f39c12; /* Naranja */
+      border-color: #f39c12;
+      color: #121212;
+      transition: background-color 0.3s, transform 0.3s;
     }
-    .icon {
-      margin-right: 5px;
+
+    .btn-warning:hover {
+      background-color: #e67e22; /* Naranja más oscuro */
+      transform: scale(1.05);
+      color: #121212;
     }
 
     /* Custom "Volver" button */
@@ -110,6 +115,16 @@
     .btn-back:hover {
       background-color: #5a6268; /* Gris oscuro */
       transform: scale(1.05);
+    }
+
+    /* Card styling to remove white background */
+    .card {
+      background-color: #1e1e1e; /* Same as main content */
+      border: none;
+    }
+
+    .card-body {
+      background-color: #1e1e1e;
     }
   </style>
 </head>
@@ -143,8 +158,8 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
             <tr>
               <th>Código</th>
               <th>Cliente</th>
@@ -171,7 +186,7 @@
                 <td>
                   <!-- Botón para finalizar orden -->
                   <form th:action="@{/empleado/ordenes/finalizar/{codigo}(codigo=${orden.codigo})}" method="post">
-                    <button class="btn btn-success btn-sm" th:disabled="${orden.estado == 'Finalizado'}">
+                    <button class="btn btn-warning btn-sm text-white" th:disabled="${orden.estado == 'Finalizado'}">
                       Finalizar
                     </button>
                   </form>

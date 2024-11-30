@@ -8,89 +8,97 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
     /* General body styles */
-    body {
-      background-color: #121212;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-    }
+     body {
+       background-color: #2f3640;
+       color: #fff;
+       font-family: 'Arial', sans-serif;
+     }
 
-    /* Container for the login form */
-    .container {
-      max-width: 500px;
-      margin-top: 100px;
-      background-color: #2f3640;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
+     /* Centered login container */
+     .container {
+       max-width: 400px;
+       margin-top: 100px;
+       background-color: rgba(47, 54, 64, 0.9);
+       padding: 30px;
+       border-radius: 10px;
+       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+     }
 
-    /* Heading style */
-    h2 {
-      color: #f39c12;
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-    }
+     /* Heading styles */
+     h2 {
+       color: #f39c12;
+       text-align: center;
+       font-size: 2rem;
+       margin-bottom: 20px;
+     }
 
-    /* Form group styles */
-    .form-group {
-      margin-bottom: 20px;
-    }
+     /* Icon styles */
+     .icon {
+       font-size: 50px;
+       color: #f39c12;
+       display: block;
+       text-align: center;
+       margin-bottom: 20px;
+     }
 
-    /* Input styles */
-    input[type="email"],
-    input[type="password"] {
-      background-color: #121212;
-      color: #fff;
-      border: 2px solid #2f3640;
-      border-radius: 8px;
-      padding: 12px;
-      width: 100%;
-      transition: border-color 0.3s;
-    }
+     /* Input field styles */
+     input[type="email"],
+     input[type="password"] {
+       background-color: #121212;
+       color: #fff;
+       border: 2px solid #2f3640;
+       border-radius: 8px;
+       padding: 10px;
+       width: 100%;
+       transition: border-color 0.3s ease;
+     }
 
-    input[type="email"]:focus,
-    input[type="password"]:focus {
-      border-color: #f39c12;
-      outline: none;
-    }
+     input[type="email"]:focus,
+     input[type="password"]:focus {
+       border-color: #f39c12;
+       outline: none;
+     }
 
-    /* Button styles */
-    .btn-primary {
-      background-color: #f39c12;
-      border: none;
-      padding: 12px 30px;
-      font-size: 1.1rem;
-      width: 100%;
-      border-radius: 8px;
-      transition: transform 0.3s, background-color 0.3s ease;
-    }
+     /* Button styles */
+     .btn-primary {
+       background-color: #f39c12;
+       border: none;
+       padding: 10px 20px;
+       font-size: 1rem;
+       width: 100%;
+       border-radius: 8px;
+       transition: transform 0.3s, background-color 0.3s ease;
+     }
 
-    .btn-primary:hover {
-      background-color: #d35400;
-      transform: scale(1.05);
-    }
+     .btn-primary:hover {
+       background-color: #d35400;
+       transform: scale(1.05);
+     }
 
-    .btn-primary:focus {
-      outline: none;
-      box-shadow: 0 0 10px rgba(243, 156, 18, 0.7);
-    }
+     .btn-secondary {
+       background-color: #6c757d;
+       border: none;
+       padding: 10px 20px;
+       font-size: 1rem;
+       width: 100%;
+       border-radius: 8px;
+       transition: background-color 0.3s ease;
+     }
 
-    /* Error message style */
-    .text-danger {
-      font-size: 1rem;
-      text-align: center;
-    }
+     .btn-secondary:hover {
+       background-color: #5a6268;
+     }
 
-    /* Responsive design for smaller screens */
-    @media (max-width: 768px) {
-      .container {
-        padding: 30px;
-      }
-      h2 {
-        font-size: 2rem;
-      }
-    }
+     /* Responsive styles */
+     @media (max-width: 768px) {
+       .container {
+         margin-top: 50px;
+         padding: 20px;
+       }
+       h2 {
+         font-size: 1.8rem;
+       }
+     }
   </style>
 </head>
 <body>
@@ -99,11 +107,11 @@
   <h2>Iniciar Sesión</h2>
   <form action="/empleado/validar" method="post">
     <div class="form-group">
-      <label for="correo">Correo</label>
+      <label for="correo"> <i class="fas fa-envelope"></i> Correo</label>
       <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo" required>
     </div>
     <div class="form-group">
-      <label for="contrasena">Contraseña</label>
+      <label for="contrasena"><i class="fas fa-lock"></i>Contraseña</label>
       <input type="password" name="contrasena" id="contrasena" class="form-control" placeholder="Contraseña" required>
     </div>
     <button type="submit" class="btn btn-primary">Ingresar</button>

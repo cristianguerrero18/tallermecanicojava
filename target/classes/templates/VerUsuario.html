@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Usuarios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!-- Iconos Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
-        /* General body styles */
         body {
             background-color: #121212;
             color: #fff;
             font-family: 'Arial', sans-serif;
             display: flex;
             min-height: 100vh;
+            margin: 0;
         }
 
-        /* Sidebar styles */
         .sidebar {
             position: fixed;
             top: 0;
@@ -38,18 +37,12 @@
             transition: background-color 0.3s;
         }
 
-        .sidebar a:hover {
+        .sidebar a:hover, .sidebar a.active {
             background-color: #f39c12;
             color: #121212;
             border-radius: 5px;
         }
 
-        .sidebar a.active {
-            background-color: #f39c12;
-            color: #121212;
-        }
-
-        /* Main content styles */
         .content {
             margin-left: 250px;
             padding: 30px;
@@ -64,44 +57,41 @@
             text-align: center;
         }
 
-        /* Table styles */
-        table {
-            width: 100%;
-            margin-top: 20px;
-            background-color: #2f3640;
-            border-radius: 10px;
-            color: #2f3640;
-        }
-
-        table th, table td {
-            text-align: center;
-            padding: 12px;
-            color: #fff;
-        }
-
-        table th {
+        .table th {
             background-color: #f39c12;
-            color: #fff;
-        }
-
-        .btn {
-            border-radius: 8px;
-            font-size: 1rem;
-            padding: 10px 20px;
             color: #121212;
         }
 
+        .table td {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #444;
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            text-align: center;
+        }
+
         .btn-warning {
-            background-color: #f39c12;
+            background-color: #3498db;
+            color: white;
             border: none;
         }
 
         .btn-warning:hover {
-            background-color: #d35400;
+            background-color: #2980b9;
         }
 
         .btn-danger {
             background-color: #e74c3c;
+            color: white;
             border: none;
         }
 
@@ -109,55 +99,33 @@
             background-color: #c0392b;
         }
 
-        .btn-success {
-            background-color: #2ecc71;
-            border: none;
-        }
-
-        .btn-success:hover {
-            background-color: #27ae60;
-        }
-
-        .btn-secondary {
-            background-color: #7f8c8d;
-            border: none;
-        }
-
-        .btn-secondary:hover {
-            background-color: #95a5a6;
+        .btn-back, .btn-create {
+            width: 48%;
+            font-size: 0.9rem; /* Haciendo el botón de volver más pequeño */
         }
 
         .btn-create {
-            background-color: #f39c12; /* Naranja */
+            background-color: #f39c12;
             color: #121212;
+            border: none;
         }
 
         .btn-create:hover {
-            background-color: #e67e22;
+            background-color: #d35400;
         }
 
         .btn-back {
-            background-color: #7f8c8d; /* Gris */
-            color: #fff;
+            background-color: #7f8c8d; /* Gris para el botón de volver */
+            color: white;
         }
 
         .btn-back:hover {
-            background-color: #95a5a6;
+            background-color: #95a5a6; /* Gris más claro al pasar el mouse */
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-            }
-
-            .content {
-                margin-left: 0;
-            }
-
-            table th, table td {
-                font-size: 0.9rem;
-            }
+        .card {
+            background-color: transparent; /* Sin fondo blanco en el card */
+            box-shadow: none; /* Eliminar sombra */
         }
 
     </style>
@@ -205,25 +173,22 @@
                     <td th:text="${usuario.correo}"></td>
                     <td>******</td>
                     <td th:text="${usuario.rol.descripcion}"></td>
-                    <td class="action-btns">
+                    <td>
                         <a th:href="@{/usuario/editar/{id}(id=${usuario.cedula})}" class="btn btn-warning">
-                            <i class="fas fa-edit icon"></i> Editar
+                            Editar
                         </a>
                         <a th:href="@{/usuario/eliminar/{id}(id=${usuario.cedula})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
-                            <i class="fas fa-trash-alt icon"></i> Eliminar
+                            Eliminar
                         </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
 
-            <a href="/verUsuario/formUsuario" class="btn btn-create btn-block">
-                <i class="fas fa-plus-circle icon"></i> Crear Usuario Nuevo
-            </a>
-
-            <a href="/admin/menu" class="btn btn-back btn-block mt-3">
-                <i class="fas fa-arrow-left icon"></i> Volver
-            </a>
+            <div class="d-flex justify-content-between mt-3">
+                <a href="/verUsuario/formUsuario" class="btn btn-create">Crear Usuario Nuevo</a>
+                <a href="/admin/menu" class="btn btn-back">Volver</a>
+            </div>
         </div>
     </div>
 </div>

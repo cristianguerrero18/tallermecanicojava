@@ -9,44 +9,48 @@
   <style>
     /* General body styles */
     body {
-      background-color: #121212;
+      background-color: #2f3640;
       color: #fff;
       font-family: 'Arial', sans-serif;
     }
 
-    /* Container for the login form */
+    /* Centered login container */
     .container {
-      max-width: 500px;
+      max-width: 400px;
       margin-top: 100px;
-      background-color: #2f3640;
-      padding: 40px;
+      background-color: rgba(47, 54, 64, 0.9);
+      padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
     }
 
-    /* Heading style */
+    /* Heading styles */
     h2 {
       color: #f39c12;
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-    }
-
-    /* Form group styles */
-    .form-group {
+      font-size: 2rem;
       margin-bottom: 20px;
     }
 
-    /* Input styles */
+    /* Icon styles */
+    .icon {
+      font-size: 50px;
+      color: #f39c12;
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Input field styles */
     input[type="email"],
     input[type="password"] {
       background-color: #121212;
       color: #fff;
       border: 2px solid #2f3640;
       border-radius: 8px;
-      padding: 12px;
+      padding: 10px;
       width: 100%;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s ease;
     }
 
     input[type="email"]:focus,
@@ -59,8 +63,8 @@
     .btn-primary {
       background-color: #f39c12;
       border: none;
-      padding: 12px 30px;
-      font-size: 1.1rem;
+      padding: 10px 20px;
+      font-size: 1rem;
       width: 100%;
       border-radius: 8px;
       transition: transform 0.3s, background-color 0.3s ease;
@@ -71,24 +75,28 @@
       transform: scale(1.05);
     }
 
-    .btn-primary:focus {
-      outline: none;
-      box-shadow: 0 0 10px rgba(243, 156, 18, 0.7);
-    }
-
-    /* Error message style */
-    .text-danger {
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+      padding: 10px 20px;
       font-size: 1rem;
-      text-align: center;
+      width: 100%;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
     }
 
-    /* Responsive design for smaller screens */
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+
+    /* Responsive styles */
     @media (max-width: 768px) {
       .container {
-        padding: 30px;
+        margin-top: 50px;
+        padding: 20px;
       }
       h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -99,11 +107,11 @@
   <h2>Iniciar Sesión</h2>
   <form action="/cliente/validar" method="post">
     <div class="form-group">
-      <label for="correo">Correo</label>
+      <label for="correo"><i class="fas fa-envelope"></i> Correo</label>
       <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo" required>
     </div>
     <div class="form-group">
-      <label for="contrasena">Contraseña</label>
+      <label for="contrasena"><i class="fas fa-lock"></i> Contraseña</label>
       <input type="password" name="contrasena" id="contrasena" class="form-control" placeholder="Contraseña" required>
     </div>
     <button type="submit" class="btn btn-primary">Ingresar</button>
